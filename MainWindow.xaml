@@ -1,0 +1,134 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SubathonWPF"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="SubathonWPF.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Debug" HorizontalAlignment="Left" Margin="0,355,0,0" VerticalAlignment="Top" Width="16" Click="Button_Click" Visibility="Hidden"/>
+
+        <GroupBox x:Name="subTypeGroup" Header="Subathon Type" HorizontalAlignment="Left" Height="62" Margin="10,10,0,0" VerticalAlignment="Top" Width="153" RenderTransformOrigin="0.481,0.549">
+            <ComboBox x:Name="subType" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="comboBox1_SelectedIndexChanged">
+                <ComboBoxItem AllowDrop="True" Content="Time per Sub"/>
+                <ComboBoxItem Content="Roulette"/>
+            </ComboBox>
+        </GroupBox>
+        <GroupBox x:Name="streamSelectorGroup" Header="Stream Selector" HorizontalAlignment="Left" Height="61" Margin="10,77,0,0" VerticalAlignment="Top" Width="225" RenderTransformOrigin="0.481,0.549">
+            <Grid HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="255">
+                <TextBox x:Name="streamerUserText" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
+                <Button x:Name="button2" Content="Save" HorizontalAlignment="Left" Margin="163,14,0,0" VerticalAlignment="Top" Width="42" Click="button2_Click"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Start Time" HorizontalAlignment="Left" Height="75" Margin="10,143,0,0" VerticalAlignment="Top" Width="295" RenderTransformOrigin="0.481,0.549">
+            <Grid Height="79" VerticalAlignment="Top" Margin="0,-27,-2,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="107*"/>
+                    <ColumnDefinition Width="68*"/>
+                    <ColumnDefinition Width="101*"/>
+                </Grid.ColumnDefinitions>
+                <xctk:IntegerUpDown x:Name="startDaysNum" HorizontalAlignment="Left" Margin="0.572,46,0,0" VerticalAlignment="Top" Height="23" Width="41" Grid.Column="1" ValueChanged="startDaysNum_ValueChanged" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Minimum="0" MouseWheelActiveOnFocus="False" Maximum="100"/>
+                <xctk:IntegerUpDown x:Name="startHoursNum" HorizontalAlignment="Left" Margin="67.572,46,0,0" VerticalAlignment="Top" Height="23" Grid.ColumnSpan="2" Width="41" Grid.Column="1" ValueChanged="startHoursNum_ValueChanged" Maximum="24" Minimum="0" DefaultValue="0" DisplayDefaultValueOnEmptyText="True"/>
+                <xctk:IntegerUpDown x:Name="startMinutesNum" HorizontalAlignment="Left" Margin="28,46,0,0" VerticalAlignment="Top" Height="23" Grid.ColumnSpan="2" Grid.Column="2" Width="41" ValueChanged="startMinutesNum_ValueChanged" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Maximum="60" Minimum="0"/>
+                <xctk:IntegerUpDown x:Name="startSecondsNum" HorizontalAlignment="Left" Margin="43,46,0,0" VerticalAlignment="Top" Height="23" Grid.Column="3" Width="41" ValueChanged="startSecondsNum_ValueChanged" Maximum="60" Minimum="0" DefaultValue="0" DisplayDefaultValueOnEmptyText="True"/>
+                <Label Content="Days" HorizontalAlignment="Left" Margin="0.572,20,0,0" VerticalAlignment="Top" Height="26" Width="35" Grid.Column="1"/>
+                <Label Content="Hours" HorizontalAlignment="Left" Margin="66.572,20,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="42" Grid.Column="1"/>
+                <Label Content="Minutes" HorizontalAlignment="Left" Margin="22,20,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="47" Grid.ColumnSpan="2"/>
+                <Label Content="Seconds" HorizontalAlignment="Left" Margin="33,20,0,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Width="60"/>
+            </Grid>
+        </GroupBox>
+        <StatusBar HorizontalAlignment="Left" Height="39" Margin="0,380,0,0" VerticalAlignment="Top" Width="792">
+            <CheckBox x:Name="isPychConnected" Content="Pychbot Connected" IsEnabled="False"/>
+            <Label x:Name="errorLabel" Content=""/>
+        </StatusBar>
+        <GroupBox Header="Max Time" HorizontalAlignment="Left" Height="75" Margin="10,223,0,0" VerticalAlignment="Top" Width="295" RenderTransformOrigin="0.481,0.549">
+            <Grid Height="79" VerticalAlignment="Top" Margin="0,-27,-2,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="107*"/>
+                    <ColumnDefinition Width="68*"/>
+                    <ColumnDefinition Width="101*"/>
+                </Grid.ColumnDefinitions>
+                <xctk:IntegerUpDown x:Name="maxDaysNum" HorizontalAlignment="Left" Margin="1,46,0,0" VerticalAlignment="Top" Height="23" Width="41" Grid.Column="1" ValueChanged="maxDaysNum_ValueChanged" Maximum="100" Minimum="0" DefaultValue="0" DisplayDefaultValueOnEmptyText="True"/>
+                <xctk:IntegerUpDown x:Name="maxHoursNum" HorizontalAlignment="Left" Margin="67.572,46,0,0" VerticalAlignment="Top" Height="23" Grid.ColumnSpan="2" Width="41" Grid.Column="1" ValueChanged="maxHoursNum_ValueChanged" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Maximum="24" Minimum="0"/>
+                <xctk:IntegerUpDown x:Name="maxMinutesNum" HorizontalAlignment="Left" Margin="28,46,0,0" VerticalAlignment="Top" Height="23" Grid.ColumnSpan="2" Grid.Column="2" Width="41" ValueChanged="maxMinutesNum_ValueChanged" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Maximum="60" Minimum="0"/>
+                <xctk:IntegerUpDown x:Name="maxSecondsNum" HorizontalAlignment="Left" Margin="43,46,0,0" VerticalAlignment="Top" Height="23" Grid.Column="3" Width="41" ValueChanged="maxSecondsNum_ValueChanged" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Maximum="60" Minimum="0"/>
+                <Label Content="Days" HorizontalAlignment="Left" Margin="0.572,20,0,0" VerticalAlignment="Top" Height="26" Width="35" Grid.Column="1"/>
+                <Label Content="Hours" HorizontalAlignment="Left" Margin="66.572,20,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="42" Grid.Column="1"/>
+                <Label Content="Minutes" HorizontalAlignment="Left" Margin="22,20,0,0" VerticalAlignment="Top" Grid.Column="2" Height="26" Width="47" Grid.ColumnSpan="2"/>
+                <Label Content="Seconds" HorizontalAlignment="Left" Margin="33,20,0,0" VerticalAlignment="Top" Grid.Column="3" Height="26" Width="60"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="timePerSubGroup" Header="Time per Sub" HorizontalAlignment="Left" Height="198" Margin="556,10,0,0" VerticalAlignment="Top" Width="216" Visibility="Hidden">
+            <Grid HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="216" Margin="0,-16,-12,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="49*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="49*"/>
+                    <ColumnDefinition Width="167*"/>
+                </Grid.ColumnDefinitions>
+                <xctk:IntegerUpDown x:Name="tier1NumCounter" HorizontalAlignment="Left" Margin="10,32.748,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" ValueChanged="tier1NumCounter_ValueChanged" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Maximum="100" Minimum="0" Grid.Row="1"/>
+                <xctk:IntegerUpDown x:Name="tier2NumCounter" HorizontalAlignment="Left" Margin="10,76.748,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" ValueChanged="tier2NumCounter_ValueChanged" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Maximum="100" Minimum="0" Grid.Row="1"/>
+                <xctk:IntegerUpDown x:Name="tier3NumCounter" HorizontalAlignment="Left" Margin="10,122.748,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" ValueChanged="tier3NumCounter_ValueChanged" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Maximum="100" Minimum="0" Grid.Row="1"/>
+                <xctk:IntegerUpDown x:Name="primeNumCounter" HorizontalAlignment="Left" Margin="10,163.748,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" DefaultValue="0" DisplayDefaultValueOnEmptyText="True" Maximum="100" Minimum="0" Grid.Row="1"/>
+                <Label Content="Tier 1 Sub" HorizontalAlignment="Left" Margin="10,5.748,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1"/>
+                <Label Content="Tier 2 Sub" HorizontalAlignment="Left" Margin="10,57.748,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.411,0.35" Grid.ColumnSpan="2" Grid.Row="1"/>
+                <Label Content="Tier 3 Sub" HorizontalAlignment="Left" Margin="10,101.748,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1"/>
+                <Label Content="Prime" HorizontalAlignment="Left" Margin="10,142.748,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1"/>
+                <ComboBox x:Name="tier2Type" HorizontalAlignment="Left" Margin="66,76.748,0,0" VerticalAlignment="Top" Width="91" Height="20" Grid.Column="1" SelectionChanged="tier2Type_SelectionChanged" Grid.Row="1">
+                    <ComboBoxItem Content="Days"/>
+                    <ComboBoxItem Content="Hours"/>
+                    <ComboBoxItem Content="Minutes"/>
+                    <ComboBoxItem Content="Seconds"/>
+                </ComboBox>
+                <ComboBox x:Name="tier3Type" HorizontalAlignment="Left" Margin="66,122.748,0,0" VerticalAlignment="Top" Width="91" Height="20" Grid.Column="1" SelectionChanged="tier3Type_SelectionChanged" Grid.Row="1">
+                    <ComboBoxItem Content="Days"/>
+                    <ComboBoxItem Content="Hours"/>
+                    <ComboBoxItem Content="Minutes"/>
+                    <ComboBoxItem Content="Seconds"/>
+                </ComboBox>
+                <ComboBox x:Name="primeType" HorizontalAlignment="Left" Margin="66,163.748,0,0" VerticalAlignment="Top" Width="91" Height="20" Grid.Column="1" SelectionChanged="primeType_SelectionChanged" Grid.Row="1">
+                    <ComboBoxItem Content="Days"/>
+                    <ComboBoxItem Content="Hours"/>
+                    <ComboBoxItem Content="Minutes"/>
+                    <ComboBoxItem Content="Seconds"/>
+                </ComboBox>
+                <ComboBox x:Name="tier1Type" HorizontalAlignment="Left" Margin="66,42.748,0,0" VerticalAlignment="Top" Width="91" Height="20" Grid.Column="1" SelectionChanged="tier1Type_SelectionChanged" Grid.Row="1">
+                    <ComboBoxItem Content="Days"/>
+                    <ComboBoxItem Content="Hours"/>
+                    <ComboBoxItem Content="Minutes"/>
+                    <ComboBoxItem Content="Seconds"/>
+                </ComboBox>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="rouletteGroup" Header="Roulette" HorizontalAlignment="Left" Height="157" Margin="556,223,0,0" VerticalAlignment="Top" Width="216" Visibility="Hidden">
+            <Grid HorizontalAlignment="Left" Height="137" Margin="0,0,-2,-3" VerticalAlignment="Top" Width="206">
+                <xctk:IntegerUpDown x:Name="numericUpDown8" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Maximum="100" Minimum="0" DefaultValue="0" DisplayDefaultValueOnEmptyText="True"/>
+                <ComboBox x:Name="comboBox5" HorizontalAlignment="Left" Margin="56,10,0,0" VerticalAlignment="Top" Width="94">
+                    <ComboBoxItem Content="Days"/>
+                    <ComboBoxItem Content="Hours"/>
+                    <ComboBoxItem Content="Minutes"/>
+                    <ComboBoxItem Content="Seconds"/>
+                </ComboBox>
+                <Button x:Name="button1" Content="Add" HorizontalAlignment="Left" Margin="157,12,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.489,0.486"/>
+                <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="95" Margin="10,37,0,0" VerticalAlignment="Top" Width="186"/>
+            </Grid>
+        </GroupBox>
+        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="361,259,0,0" VerticalAlignment="Top" Width="75" Click="startButton_Click_1"/>
+        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="361,296,0,0" VerticalAlignment="Top" Width="75" Click="stopButton_Click_1"/>
+        <Button x:Name="resetButton" Content="Reset" HorizontalAlignment="Left" Margin="361,332,0,0" VerticalAlignment="Top" Width="75" Click="resetButton_Click"/>
+        <Label Content="Subathon Controller" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="247,22,0,0" FontWeight="Bold" FontSize="30"/>
+        <Label Content="Estimated End Time" HorizontalAlignment="Left" Margin="336,77,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="estimatedEndLabel" Content="Estimating" HorizontalAlignment="Left" Margin="356,94,0,0" VerticalAlignment="Top"/>
+        <Label Content="Time Left" HorizontalAlignment="Left" Margin="362,139,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="timeLeftLabel" Content="Estimating" HorizontalAlignment="Left" Margin="362,157,0,0" VerticalAlignment="Top" IsManipulationEnabled="True"/>
+        <Label Content="Elapsed Time" HorizontalAlignment="Left" Margin="356,188,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="elapsedTimeLabel" Content="Estimating" HorizontalAlignment="Left" Margin="362,205,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
